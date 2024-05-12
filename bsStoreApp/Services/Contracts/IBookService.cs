@@ -1,4 +1,5 @@
-﻿using Entities.Models;
+﻿using Entities.DataTransferObjects;
+using Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,6 @@ namespace Services.Contracts
         Book GetOneBookId(int id, bool trackChanges);
         Book CreateOneBook(Book book);
         void DeleteOneBook(int id, bool trackChanges);
-        void UpdateOneBook(int id, Book book, bool trackChanges);
+        void UpdateOneBook(int id, BookDtoForUpdate bookDto, bool trackChanges);
     }
 }

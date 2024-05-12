@@ -24,3 +24,31 @@
 2024-05-10 17:21:48.2212 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
 2024-05-10 17:21:48.2405 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
 2024-05-10 17:21:48.2656 Info Configuration initialized.
+2024-05-12 17:26:07.5071 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:26:07.5476 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:26:07.5476 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:26:07.5628 Info Configuration initialized.
+2024-05-12 17:35:31.2606 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:35:31.2842 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:35:31.2842 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:35:31.3018 Info Configuration initialized.
+2024-05-12 17:42:54.7678 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:42:54.7859 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:42:54.7936 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:42:54.7936 Info Configuration initialized.
+2024-05-12 17:53:40.5864 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:53:40.6104 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:53:40.6224 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:53:40.6224 Info Configuration initialized.
+2024-05-12 17:55:08.4338 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:55:08.4577 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:55:08.4693 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:55:08.4693 Info Configuration initialized.
+2024-05-12 17:56:50.4238 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:56:50.4415 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:56:50.4415 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:56:50.4566 Info Configuration initialized.
+2024-05-12 17:57:00.6836 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-12 17:57:00.7006 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-12 17:57:00.7061 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-12 17:57:00.7061 Info Configuration initialized.
