@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 using Services.Contracts;
 using WebApi.Extensions;
@@ -22,6 +23,11 @@ internal class Program
 
         LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
+        builder.Services.Configure<ApiBehaviorOptions>(
+            options =>
+            {
+                options.SuppressModelStateInvalidFilter = true;
+            });
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
