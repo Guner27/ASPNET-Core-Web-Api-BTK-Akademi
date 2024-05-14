@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using NLog;
+using Presentation.ActionFilters;
 using Services.Contracts;
 using WebApi.Extensions;
 
@@ -21,6 +22,8 @@ internal class Program
             .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
             .AddNewtonsoftJson();
 
+        
+
         LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
         builder.Services.Configure<ApiBehaviorOptions>(
@@ -38,6 +41,7 @@ internal class Program
         builder.Services.ConfigureServiceManager();
         builder.Services.ConfigureLoggerService();
         builder.Services.AddAutoMapper(typeof(Program));
+        builder.Services.ConfigureActionFilter();
 
 
         var app = builder.Build();
