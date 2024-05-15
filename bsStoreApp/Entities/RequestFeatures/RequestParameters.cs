@@ -21,5 +21,6 @@ namespace Entities.RequestFeatures
             //Eğer şart doğruysa (value, max'dan büyükse) maxPageSize çalışır. 
             //Eğer doğru değilse (value, max'dan küçükse) value değerini verir
         }
+        public String? OrderBy { get; set; }
     }
 }
