@@ -22,5 +22,6 @@ namespace Entities.RequestFeatures
             //Eğer doğru değilse (value, max'dan küçükse) value değerini verir
         }
         public String? OrderBy { get; set; }
+        public String? Fields { get; set; }
     }
 }
