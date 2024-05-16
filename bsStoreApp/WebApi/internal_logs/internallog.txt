@@ -172,3 +172,35 @@
 2024-05-15 21:29:50.9624 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
 2024-05-15 21:29:50.9624 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
 2024-05-15 21:29:50.9624 Info Configuration initialized.
+2024-05-16 18:23:44.0619 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 18:23:44.1099 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 18:23:44.1099 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 18:23:44.1099 Info Configuration initialized.
+2024-05-16 18:33:27.6380 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 18:33:27.6578 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 18:33:27.6578 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 18:33:27.6769 Info Configuration initialized.
+2024-05-16 18:34:45.8430 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 18:34:45.8721 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 18:34:45.8721 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 18:34:45.8998 Info Configuration initialized.
+2024-05-16 18:37:05.7750 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 18:37:05.7939 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 18:37:05.7939 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 18:37:05.8099 Info Configuration initialized.
+2024-05-16 18:39:06.7233 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 18:39:06.7427 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 18:39:06.7499 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 18:39:06.7499 Info Configuration initialized.
+2024-05-16 18:39:49.2995 Info AppDomain Shutting down. LogFactory closing...
+2024-05-16 18:39:49.2995 Info LogFactory has been closed.
+2024-05-16 18:49:15.7098 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 18:49:15.7313 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 18:49:15.7415 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 18:49:15.7598 Info Configuration initialized.
+2024-05-16 18:58:38.5971 Info AppDomain Shutting down. LogFactory closing...
+2024-05-16 18:58:38.6181 Info LogFactory has been closed.
+2024-05-16 21:41:31.7136 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-05-16 21:41:31.7552 Info NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 5.3.2.2526. Product version: 5.3.2+8d52d4f3fcdbd84beae3442e1fdc8125598ed81f. GlobalAssemblyCache: False
+2024-05-16 21:41:31.7552 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=D:\MUHAMMED\Projeler\Projects\WebApiBTK\Projects\bsStoreApp\WebApi\nlog.config
+2024-05-16 21:41:31.7684 Info Configuration initialized.

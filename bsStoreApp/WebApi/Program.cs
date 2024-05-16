@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using Presentation.ActionFilters;
+using Services;
 using Services.Contracts;
 using WebApi.Extensions;
 
@@ -17,10 +18,10 @@ internal class Program
             config.RespectBrowserAcceptHeader = true; //Ýçerik pazarlýðýna uygulama açýldý.
             config.ReturnHttpNotAcceptable = true;
         })
-            .AddCustomCsvFormatter()
             .AddXmlDataContractSerializerFormatters()
-            .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly)
-            .AddNewtonsoftJson();
+            .AddCustomCsvFormatter()            
+            .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
+            //.AddNewtonsoftJson();
 
         
 
@@ -44,6 +45,8 @@ internal class Program
         builder.Services.ConfigureActionFilter();
         builder.Services.ConfigureCors();
         builder.Services.ConfigureDataShaper();
+        builder.Services.AddCustomMediaTypes();
+        builder.Services.AddScoped<IBookLinks, BookLinks>();
 
 
         var app = builder.Build();
