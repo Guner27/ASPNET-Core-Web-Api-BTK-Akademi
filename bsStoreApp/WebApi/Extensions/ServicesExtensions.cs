@@ -1,8 +1,10 @@
 ﻿using Entities.DataTransferObjects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.EntityFrameworkCore;
 using Presentation.ActionFilters;
+using Presentation.Controllers;
 using Repositories.Contracts;
 using Repositories.EFCore;
 using Services;
@@ -79,6 +81,29 @@ namespace WebApi.Extensions
                 }
             });
 
+        }
+
+        public static void ConfigureVersioning(this IServiceCollection services)
+        {
+            services.AddApiVersioning(opt =>
+            {
+                //Api'nin versiyon bilgisini Response-Headers bölümüne ekler.
+                opt.ReportApiVersions = true;
+
+                //Kullanıcı herhangi bir versiyon bilgisi talep etmezse, Api'nin default versiyon bilgisini dönüş yapar.
+                opt.AssumeDefaultVersionWhenUnspecified = true;
+                opt.DefaultApiVersion = new ApiVersion(1, 0);
+
+                //Header üzerinden versiyon bilgisi 
+                opt.ApiVersionReader = new HeaderApiVersionReader("api-version");
+
+                //Conventions: Api üzerinden Versionlama Atribute'sini[ApiVersion("1.0")] kaldırmak için: 
+                opt.Conventions.Controller<BooksController>()
+                    .HasApiVersion(new ApiVersion(1, 0));
+
+                opt.Conventions.Controller<BooksV2Controller>()
+                    .HasDeprecatedApiVersion(new ApiVersion(2, 0));
+            });
         }
     }
 }

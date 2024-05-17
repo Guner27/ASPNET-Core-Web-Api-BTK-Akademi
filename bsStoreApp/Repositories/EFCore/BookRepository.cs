@@ -32,5 +32,12 @@ namespace Repositories.EFCore
 
         public async Task<Book> GetOneBookIdAsync(int id, bool trackChanges) => await FindByCondition(b => b.Id.Equals(id), trackChanges).SingleOrDefaultAsync();
 
+        public async Task<List<Book>> GetAllBookAsync(bool trackChanges)
+        {
+            return await FindAll(trackChanges)
+                .OrderBy(b => b.Id)
+                .ToListAsync();
+
+        }
     }
 }

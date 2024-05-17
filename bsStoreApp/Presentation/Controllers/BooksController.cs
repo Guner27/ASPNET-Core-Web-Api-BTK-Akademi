@@ -15,9 +15,11 @@ using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
+    //[ApiVersion("1.0")]  //It's done comment line for Conventions 
     [ServiceFilter(typeof(LogFilterAttribute))]
     [ApiController]
     [Route("api/books")]
+    //[Route("api/{v:apiversion}/books")] //Versioning with URL
     public class BooksController : ControllerBase
     {
         private readonly IServiceManager _manager;
@@ -30,7 +32,7 @@ namespace Presentation.Controllers
         [HttpHead]
         [ServiceFilter(typeof(ValidateMediaTypeAttribute))]
         [HttpGet(Name = "GetAllBooksAsync")]
-        public async Task<IActionResult> GetAllBooksAsync([FromQuery]BookParameters bookParameters)
+        public async Task<IActionResult> GetAllBooksAsync([FromQuery] BookParameters bookParameters)
         {
             var linkParameters = new LinkParameters()
             {
@@ -60,7 +62,7 @@ namespace Presentation.Controllers
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost(Name = "CreateOneBookAsync")]
         public async Task<IActionResult> CreateOneBookAsync([FromBody] BookDtoForInsertion bookDto)
-        {         
+        {
             var book = await _manager.BookService.CreateOneBookAsync(bookDto);
             return StatusCode(201, book); //CreatedAtRoute()
         }
@@ -93,7 +95,7 @@ namespace Presentation.Controllers
 
             if (!ModelState.IsValid)
                 return UnprocessableEntity(ModelState);
-            
+
             await _manager.BookService.SaveChangesForPatchAsync(result.bookDtoForUpdate, result.book);
             return NoContent(); //204
         }
@@ -105,7 +107,7 @@ namespace Presentation.Controllers
             return Ok();
         }
 
-        
+
 
     }
 }
