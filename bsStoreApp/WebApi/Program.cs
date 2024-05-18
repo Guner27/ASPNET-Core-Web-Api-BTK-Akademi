@@ -1,3 +1,4 @@
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using Presentation.ActionFilters;
@@ -21,11 +22,11 @@ internal class Program
             config.CacheProfiles.Add("5mins", new CacheProfile() { Duration = 300 });//Caching
         })
             .AddXmlDataContractSerializerFormatters()
-            .AddCustomCsvFormatter()            
+            .AddCustomCsvFormatter()
             .AddApplicationPart(typeof(Presentation.AssemblyReference).Assembly);
-            //.AddNewtonsoftJson();
+        //.AddNewtonsoftJson();
 
-        
+
 
         LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
 
@@ -52,6 +53,9 @@ internal class Program
         builder.Services.ConfigureVersioning();
         builder.Services.ConfigureResponseCaching();
         builder.Services.ConfigureHttpCacheHeaders();
+        builder.Services.AddMemoryCache();
+        builder.Services.ConfigureRateLimittingOptions();
+        builder.Services.AddHttpContextAccessor();
 
 
         var app = builder.Build();
@@ -73,6 +77,8 @@ internal class Program
 
         app.UseHttpsRedirection();
 
+
+        app.UseIpRateLimiting();
         app.UseCors("CorsPolicy");
         app.UseResponseCaching();
         app.UseHttpCacheHeaders();
