@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Entities.DataTransferObjects;
+using Entities.Exceptions;
 using Entities.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -161,12 +162,28 @@ namespace Services
 
             //Doğrulama metotu çalıştıktan sonra eğer bu securityToken oluşmuşsa validate işlemi gerçekleşiş oluyor. Ve kullanıcı bilgilerini dönebilirim.
             var jwtSecurityToken =securityToken as JwtSecurityToken;
-            if (jwtSecurityToken is null || jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase)) 
+            if (jwtSecurityToken is null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase)) 
             {
                 throw new SecurityTokenException("Invalid Token");            
             }
 
             return pricipal;
+        }
+
+        public async Task<TokenDto> RefreshToken(TokenDto tokenDto)
+        {
+            var principal = GetPricipalFromExpiredToken(tokenDto.AccessToken);
+
+            //Veritabanında ilgili kullanıcı var mı yok mu?
+            var user = await _userManager.FindByNameAsync(principal.Identity.Name);
+
+            if (user is null ||
+                user.RefreshToken != tokenDto.RefreshToken ||
+                user.RefreshTokenExpiryTime <= DateTime.Now)
+                throw new RefreshTokenBadRequestException();
+
+            _user = user;
+            return await CreateToken(populateExp: false);
         }
     }
 }
