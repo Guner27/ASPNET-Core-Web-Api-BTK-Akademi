@@ -1,6 +1,8 @@
 ﻿using AspNetCoreRateLimit;
 using Entities.DataTransferObjects;
+using Entities.Models;
 using Marvin.Cache.Headers;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -141,6 +143,22 @@ namespace WebApi.Extensions
             services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
             services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
             services.AddSingleton<IProcessingStrategy, AsyncKeyLockProcessingStrategy>();
+        }
+
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            var builder = services.AddIdentity<User, IdentityRole>(opts =>
+            {
+                opts.Password.RequireDigit = true;           //Rakam istiyor muyuz?
+                opts.Password.RequireLowercase = false;      //Küçük harf istiyor muyuz?
+                opts.Password.RequireUppercase = false;      //Büyük Harf istiyor muyuz?
+                opts.Password.RequireNonAlphanumeric = false;//Özel karakter?
+                opts.Password.RequiredLength = 6;            //Uzunluk
+
+                opts.User.RequireUniqueEmail = true;
+            })
+                .AddEntityFrameworkStores<RepositoryContext>()
+                .AddDefaultTokenProviders();            //to use JWT
         }
     }
 }
