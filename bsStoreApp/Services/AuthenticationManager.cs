@@ -7,6 +7,7 @@ using Microsoft.IdentityModel.Tokens;
 using Services.Contracts;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace Services
@@ -31,12 +32,33 @@ namespace Services
             _config = config;
         }
 
-        public async Task<string> CreateToken()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="populateExp">Bu ifade True ise RefreshToken süre uzatması yap. False ise süreye dokunma</param>
+        /// <returns></returns>
+        public async Task<TokenDto> CreateToken(bool populateExp)
         {
             var signinCredentials = GetSigninCredentials(); //Kimlik bilgilerini al
             var claims = await GetClaims();     //Rol bilgilerini al
             var TokenOptions = GenerateTokenOptions(signinCredentials, claims); //Token oluşturma ayarlarını yap
-            return new JwtSecurityTokenHandler().WriteToken(TokenOptions);      //Token oluştur.
+
+            var RefreshToken = GenerateRefreshToken();
+            _user.RefreshToken = RefreshToken;
+
+            if (populateExp)
+                _user.RefreshTokenExpiryTime = DateTime.Now.AddDays(7);
+
+            await _userManager.UpdateAsync(_user);
+
+
+            var accessToken = new JwtSecurityTokenHandler().WriteToken(TokenOptions);      //Token oluştur.
+
+            return new TokenDto()
+            {
+                AccessToken = accessToken,
+                RefreshToken = RefreshToken,
+            };
         }
 
 
@@ -101,6 +123,50 @@ namespace Services
                 signingCredentials: signinCredentials);
 
             return tokenOptions;
+        }
+
+        private string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
+        }
+
+        private ClaimsPrincipal GetPricipalFromExpiredToken(string token)
+        {
+            var jwtSettings = _config.GetSection("JwtSettings");
+            var secretKey = jwtSettings["secretKey"];
+
+            //Token Doğrulama, (Bunu gerçekten ben mi ürettüm)
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = true,  //Key'i kim ürettiyse onu doğrula
+                ValidateAudience = true,    //Geçerli bir alıcı mı
+                ValidateLifetime = true,    //Süresi var mı
+                ValidateIssuerSigningKey = true,
+                ValidIssuer = jwtSettings["validIssuer"],
+                ValidAudience = jwtSettings["validAudience"],
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey)),
+
+            };
+
+            var tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken securityToken;
+
+            //Doğrulama işleminden kullanıcı bilgilerini al.
+            var pricipal = tokenHandler.ValidateToken(token,tokenValidationParameters, out securityToken);
+
+            //Doğrulama metotu çalıştıktan sonra eğer bu securityToken oluşmuşsa validate işlemi gerçekleşiş oluyor. Ve kullanıcı bilgilerini dönebilirim.
+            var jwtSecurityToken =securityToken as JwtSecurityToken;
+            if (jwtSecurityToken is null || jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase)) 
+            {
+                throw new SecurityTokenException("Invalid Token");            
+            }
+
+            return pricipal;
         }
     }
 }
