@@ -57,8 +57,9 @@ internal class Program
         builder.Services.ConfigureRateLimittingOptions();
         builder.Services.AddHttpContextAccessor();
 
-        builder.Services.AddAuthentication();
         builder.Services.ConfigureIdentity();
+        builder.Services.ConfigureJWT(builder.Configuration);
+        
 
 
         var app = builder.Build();
