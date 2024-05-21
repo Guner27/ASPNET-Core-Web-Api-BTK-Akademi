@@ -1,5 +1,6 @@
 using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
 using NLog;
 using Presentation.ActionFilters;
 using Services;
@@ -59,7 +60,10 @@ internal class Program
 
         builder.Services.ConfigureIdentity();
         builder.Services.ConfigureJWT(builder.Configuration);
-        
+
+        builder.Services.RegisterRepositories();
+        builder.Services.RegisterServices();
+
 
 
         var app = builder.Build();
