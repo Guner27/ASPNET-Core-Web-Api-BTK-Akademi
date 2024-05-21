@@ -18,6 +18,7 @@ namespace Services
 {
     public class BookManager : IBookService
     {
+        private readonly ICategoryService _categoryService;
         private readonly IRepositoryManager _manager;
         private readonly ILoggerService _logger;
         private readonly IMapper _mapper;
@@ -27,16 +28,20 @@ namespace Services
             IRepositoryManager manager,
             ILoggerService logger,
             IMapper mapper,
-            IBookLinks bookLinks)
+            IBookLinks bookLinks,
+            ICategoryService categoryService)
         {
             _manager = manager;
             _logger = logger;
             _mapper = mapper;
             _bookLinks = bookLinks;
+            _categoryService = categoryService;
         }
 
         public async Task<BookDto> CreateOneBookAsync(BookDtoForInsertion bookDto)
         {
+            var category = await _categoryService.GetOneCategoriesByIdAsync(bookDto.CategoryId, false);
+
             var entity = _mapper.Map<Book>(bookDto);
             _manager.Book.CreateOneBook(entity);
             await _manager.SaveAsync();
@@ -73,6 +78,11 @@ namespace Services
         {
             var books = await _manager.Book.GetAllBookAsync(trackChanges);
             return books;
+        }
+
+        public async Task<IEnumerable<Book>> GetAllBooksWithDetailAsync(bool trackChanges)
+        {
+            return await _manager.Book.GetAllBooksWithDetailAsync(trackChanges);
         }
 
         public async Task<(BookDtoForUpdate bookDtoForUpdate, Book book)> GetOneBookForPatchAsync(int id, bool trackChanges)

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories.EFCore;
 
@@ -11,9 +12,11 @@ using Repositories.EFCore;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20240520163407_mig_5")]
+    partial class mig_5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,9 +33,6 @@ namespace WebApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
@@ -42,29 +42,24 @@ namespace WebApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.ToTable("Books");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CategoryId = 1,
                             Price = 72m,
                             Title = "Another Love"
                         },
                         new
                         {
                             Id = 2,
-                            CategoryId = 2,
                             Price = 70m,
                             Title = "Prince Of Persia"
                         },
                         new
                         {
                             Id = 3,
-                            CategoryId = 1,
                             Price = 81m,
                             Title = "My Love"
                         });
@@ -210,19 +205,19 @@ namespace WebApi.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "6209045c-7e2b-474e-b093-61374c26d6d6",
+                            Id = "dc7405c3-23ad-4aae-b0ce-ae3d85a5f5c6",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
-                            Id = "23911a02-19aa-4f24-8e11-9fc12bfa944a",
+                            Id = "88f8f360-02f6-4784-8498-eab9292f6862",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         },
                         new
                         {
-                            Id = "4084f680-2eb3-48b8-8111-0431e47448b4",
+                            Id = "0978ecbb-b409-4088-9aaf-dfc4ca909774",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -332,17 +327,6 @@ namespace WebApi.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("Entities.Models.Book", b =>
-                {
-                    b.HasOne("Entities.Models.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
