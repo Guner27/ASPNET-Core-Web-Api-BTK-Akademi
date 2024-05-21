@@ -67,6 +67,16 @@ namespace Presentation.Controllers
         }
 
 
+        [Authorize]
+        [HttpGet("details")]
+        public async Task<IActionResult> GetAllBooksWithDetailsAsync()
+        {
+            return Ok(await _manager.BookService.GetAllBooksWithDetailAsync(false));
+        }
+
+
+
+
         [Authorize(Roles = "Editor, Admin")] //Just Editor and Admin
         [ServiceFilter(typeof(ValidationFilterAttribute))]
         [HttpPost(Name = "CreateOneBookAsync")]
